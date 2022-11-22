@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="border-0">Faktura nr</h4>
+  <button type="button" class="close" (click)="dismiss()">&times;</button>
+</div>
+<div class="modal-body d-flex flex-column">
+  <div>Data wystawienia faktury: <span>{{invoice.date | date: 'd/M/y'}}</span></div>
+  <div>Numer faktury: <span>{{invoice.invoiceNumber}}</span></div>
+  <div>Sprzedawca: <span>{{invoice.seller.firstName}} {{invoice.seller.surName}}</span></div>
+  <div>Kwota faktury: <span>{{invoice.amount}}</span></div>
+</div>
+<div class="modal-footer justify-content-between">
+  <button mat-raised-button (click)="dismiss()">
+    WRÓĆ
+  </button>
+</div>

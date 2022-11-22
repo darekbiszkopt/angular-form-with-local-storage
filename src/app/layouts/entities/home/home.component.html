@@ -1,0 +1,65 @@
+<h1>Lista Faktur</h1>
+<div class="d-flex justify-content-between">
+  <div>
+    <ng-container *ngIf="isAvailable([Authorities.ADMIN])">
+      Filtruj
+      <ng-select [formControl]="filterControl">
+        <ng-option *ngFor="let seller of  sellerList" [value]="seller.id">
+          {{seller.firstName}} {{seller.surName}}
+        </ng-option>
+      </ng-select>
+    </ng-container>
+  </div>
+
+  <mat-button-toggle-group [(ngModel)]="currentAuth" (change)="changeAuth($event)">
+    <mat-button-toggle [value]="Authorities.USER">USER</mat-button-toggle>
+    <mat-button-toggle [value]="Authorities.ADMIN">ADMIN</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">
+      <span>Numer faktury</span>
+    </th>
+    <th scope="col">
+      <span>Nazwa sprzedawcy</span>
+    </th>
+    <th scope="col">
+      <span>Kwota faktury</span>
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let invoice of filterList">
+    <td>
+      {{invoice.invoiceNumber}}
+    </td>
+    <td>
+      {{invoice.seller.firstName}} {{invoice.seller.surName}}
+    </td>
+    <td>
+      {{invoice.amount}}
+    </td>
+    <td class="text-right">
+      <button *ngIf="isAvailable([Authorities.ADMIN])" mat-raised-button (click)="deleteInvoice(invoice)">
+        <mat-icon class="color-primary">delete</mat-icon>
+      </button>
+      <button class="ms-2" mat-raised-button (click)="editInvoice(invoice)">
+        <mat-icon class="color-primary">edit</mat-icon>
+      </button>
+      <button class="ms-2" mat-raised-button>
+        <mat-icon class="color-primary" (click)="infoInvoice(invoice)">info</mat-icon>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="footer justify-content-end">
+  <button class="font-weight-bold submit-button" mat-stroked-button
+          [disabled]="!isAvailable([Authorities.ADMIN])" (click)="addInvoice()">
+    <mat-icon>add</mat-icon>
+    <span class="pl-1">Utwórz nową fakture</span>
+  </button>
+</div>

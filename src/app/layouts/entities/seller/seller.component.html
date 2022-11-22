@@ -1,0 +1,20 @@
+<h1>Sprzedawcy</h1>
+<div class="d-flex justify-content-between pb-4">
+  <div>
+    Filtruj
+    <ng-select [formControl]="filterControl">
+      <ng-option *ngFor="let seller of  sellerList" [value]="seller.id">
+        {{seller.firstName}} {{seller.surName}}
+      </ng-option>
+    </ng-select>
+  </div>
+  <mat-button-toggle-group [(ngModel)]="edit" (change)="changeReadable($event)">
+    <mat-button-toggle [value]="true">Edycja</mat-button-toggle>
+    <mat-button-toggle [value]="false">Readonly</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<div class="footer justify-content-end" *ngIf="!!choosenSeller">
+  <div>Imie i Nazwisko: <span>{{choosenSeller.firstName}} {{choosenSeller.surName}}</span></div>
+  <div>ID : <span>{{choosenSeller.id}}</span></div>
+  <div>Adres: <span>{{choosenSeller.address | address}}</span></div>
+</div>

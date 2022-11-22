@@ -1,0 +1,75 @@
+@import "bootstrap";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@angular/material/theming';
+@import '~@angular/material/theming';
+
+body {
+  --primary: rgba(57, 77, 157, 0.82);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.color-primary {
+  color: var(--primary);
+}
+
+.submit-button {
+  background-color: var(--primary);
+  color: white;
+
+  &:disabled {
+    background-color: #8080807E;
+  }
+}
+
+.close {
+  border: none;
+  background-color: white;
+}
+
+mat-button-toggle {
+  height: 3rem;
+  border: 1px rgba(0, 0, 0, 0) solid !important;
+  border-radius: 5%;
+  background-color: lightgray;
+  z-index: 3 !important;
+}
+
+mat-button-toggle:hover {
+  border: 1px rgba(126, 123, 123, 0.49) solid !important;
+  border-radius: 5%;
+}
+
+.mat-button-toggle-checked {
+  background-color: #85869BFF;
+  color: white;
+}
+
+.footer {
+  border: 1px lightgray solid;
+  border-radius: 0.5rem;
+  padding: 1rem
+}
+
+td {
+  button {
+    border: 1px solid rgba(56, 64, 68, 0.29);
+    background-color: #e0e4e5;
+
+    &:hover {
+      background-color: #cacbce;
+    }
+  }
+}
+
+.ng-select {
+  width: 25rem;
+}
+
+.text-right {
+  text-align: right;
+}
+
+

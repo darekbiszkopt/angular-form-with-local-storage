@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="border-0">{{invoice ? 'Edytuj' : 'Utwórz'}} fakture</h4>
+  <button type="button" class="close" (click)="dismiss()">&times;</button>
+</div>
+<form class="modal-body d-flex flex-column" *ngIf="invoiceForm" [formGroup]="invoiceForm">
+  <label>Numer faktury</label>
+  <input class="form-control" formControlName="invoiceNumber">
+  <label>Data</label>
+  <input class="date-input" type="date" formControlName="date"/>
+  <label>Sprzedawca</label>
+  <ng-select formControlName="seller">
+    <ng-option *ngFor="let seller of  sellerList" [value]="seller.id">
+      {{seller.firstName}} {{seller.surName}}
+    </ng-option>
+  </ng-select>
+  <label>Kwota faktury</label>
+  <input class="form-control" formControlName="amount">
+</form>
+<div class="modal-footer justify-content-between">
+  <button mat-raised-button (click)="dismiss()">
+    ANULUJ
+  </button>
+  <button class="ml-2 submit-button" mat-raised-button type="submit" [disabled]="invoiceForm.invalid" (click)="save()">
+    ZAPISZ FAKTURE
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>
